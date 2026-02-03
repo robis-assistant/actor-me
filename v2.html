@@ -36,6 +36,7 @@
             --font-main: 'Inter', sans-serif;
             --font-heading: 'ActorCustom', sans-serif;
             --handle-blue: #5856D6;
+            --accent: #FF3B30;
         }
 
         * {
@@ -52,7 +53,7 @@
             overflow-x: hidden;
         }
 
-        /* Nav */
+        /* Nav & Mega Menu */
         nav {
             padding: 1.5rem 5%;
             display: flex;
@@ -61,7 +62,7 @@
             max-width: 1400px;
             margin: 0 auto;
             position: relative;
-            z-index: 100;
+            z-index: 1000;
             background: white;
         }
 
@@ -74,6 +75,11 @@
             display: flex;
             gap: 2rem;
             align-items: center;
+        }
+
+        .nav-item {
+            position: relative;
+            padding: 1rem 0;
         }
 
         .nav-links a {
@@ -91,6 +97,116 @@
             width: 10px;
             height: 6px;
             opacity: 0.5;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-item:hover .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        /* Mega Menu styling */
+        .mega-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            width: 900px;
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.1);
+            padding: 3rem;
+            display: flex;
+            gap: 3rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid #F0F0F0;
+        }
+
+        .nav-item:hover .mega-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .mega-content {
+            flex: 2;
+        }
+
+        .mega-title {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+
+        .mega-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+        }
+
+        .mega-item {
+            display: flex;
+            gap: 1.25rem;
+            text-decoration: none;
+            color: inherit;
+            transition: opacity 0.2s;
+        }
+
+        .mega-item:hover {
+            opacity: 0.7;
+        }
+
+        .mega-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--gray-light);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .mega-item-info h4 {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            margin-bottom: 0.4rem;
+            font-weight: 700;
+        }
+
+        .mega-item-info p {
+            color: var(--gray-text);
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .mega-sidebar {
+            flex: 1;
+            background: var(--gray-light);
+            border-radius: 24px;
+            padding: 2rem;
+        }
+
+        .sidebar-title {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .sidebar-links a {
+            display: block;
+            margin-bottom: 0.75rem;
+            color: var(--gray-text);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .sidebar-links a:hover {
+            color: var(--black);
         }
 
         .nav-auth {
@@ -128,7 +244,7 @@
         }
 
         .hero-content {
-            flex: 0 0 600px; /* Fixed width to prevent pushing the grid */
+            flex: 0 0 600px; 
             position: relative;
             z-index: 10;
         }
@@ -146,7 +262,7 @@
             background: var(--gray-light);
             border: 1px solid #E5E5E5;
             padding: 1rem 2rem;
-            border-radius: 20px;
+            border-radius: 16px;
             display: inline-flex;
             align-items: center;
             font-size: 2.5rem;
@@ -157,7 +273,6 @@
             position: relative;
             overflow: hidden;
             white-space: nowrap;
-            /* Extra vertical space for descenders (g, y, j) */
             line-height: 1.4; 
         }
 
@@ -167,7 +282,7 @@
         .handle-value-wrapper {
             display: inline-flex;
             flex-direction: column;
-            height: 1.4em; /* Increased to fix descender clipping */
+            height: 1.4em;
             overflow: hidden;
             position: relative;
             vertical-align: middle;
@@ -290,7 +405,7 @@
 
         @media (max-width: 1024px) {
             .hero-container { flex-direction: column; text-align: center; height: auto; }
-            .hero-content { margin-bottom: 4rem; max-width: 100%; }
+            .hero-content { margin-bottom: 4rem; max-width: 100%; flex: 1; }
             .hero-cta { justify-content: center; }
             .hero-grid { padding-left: 0; height: 600px; mask-image: none; -webkit-mask-image: none; overflow: hidden; }
             h1 { font-size: 3.5rem; }
@@ -312,9 +427,65 @@
             </svg>
         </div>
         <div class="nav-links">
-            <a href="#">Features <svg class="dropdown-arrow" viewBox="0 0 10 6"><path d="M1 1L5 5L9 1" stroke="black" stroke-width="2" fill="none"/></svg></a>
+            <div class="nav-item">
+                <a href="#">Products <svg class="dropdown-arrow" viewBox="0 0 10 6"><path d="M1 1L5 5L9 1" stroke="black" stroke-width="2" fill="none"/></svg></a>
+                
+                <!-- Mega Menu -->
+                <div class="mega-menu">
+                    <div class="mega-content">
+                        <div class="mega-title">Our Products</div>
+                        <div class="mega-grid">
+                            <a href="#" class="mega-item">
+                                <div class="mega-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                </div>
+                                <div class="mega-item-info">
+                                    <h4>Personal Handle</h4>
+                                    <p>Claim your unique actor.me/name URL for professional use.</p>
+                                </div>
+                            </a>
+                            <a href="#" class="mega-item">
+                                <div class="mega-icon" style="background: #EBF5FF; color: #007AFF;">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+                                </div>
+                                <div class="mega-item-info">
+                                    <h4>Video Reels</h4>
+                                    <p>Embed clips, reels, and voiceovers directly into your profile.</p>
+                                </div>
+                            </a>
+                            <a href="#" class="mega-item">
+                                <div class="mega-icon" style="background: #FDF2F2; color: #FF3B30;">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+                                </div>
+                                <div class="mega-item-info">
+                                    <h4>Insightful Stats</h4>
+                                    <p>Know exactly when and where your site is being viewed.</p>
+                                </div>
+                            </a>
+                            <a href="#" class="mega-item">
+                                <div class="mega-icon" style="background: #F0FFF4; color: #27AE60;">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                                </div>
+                                <div class="mega-item-info">
+                                    <h4>SEO Optimized</h4>
+                                    <p>Get found on Google with built-in, industry-specific SEO.</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="mega-sidebar">
+                        <div class="sidebar-title">Resources</div>
+                        <div class="sidebar-links">
+                            <a href="#">Casting Director Network</a>
+                            <a href="#">Showcase Profiles</a>
+                            <a href="#">Help Center</a>
+                            <a href="#">Pro Membership</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <a href="#">Resources</a>
-            <a href="#">Pricing <svg class="dropdown-arrow" viewBox="0 0 10 6"><path d="M1 1L5 5L9 1" stroke="black" stroke-width="2" fill="none"/></svg></a>
+            <a href="#">Pricing</a>
         </div>
         <div class="nav-auth">
             <a href="#" style="text-decoration: none; color: black; font-weight: 500;">Log in</a>
