@@ -117,7 +117,7 @@
 
         /* Hero Container */
         .hero-container {
-            max-width: 1440px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 5% 6rem;
             display: flex;
@@ -147,7 +147,7 @@
             background: var(--gray-light);
             border: 1px solid #E5E5E5;
             padding: 1rem 2rem;
-            border-radius: 20px;
+            border-radius: 16px;
             display: inline-flex;
             align-items: center;
             font-size: 2.5rem;
@@ -158,7 +158,8 @@
             position: relative;
             overflow: hidden;
             white-space: nowrap;
-            /* width animated via JS */
+            /* Extra vertical space for descenders (g, y, j) */
+            line-height: 1.4; 
         }
 
         .handle-prefix { color: var(--black); }
@@ -167,16 +168,16 @@
         .handle-value-wrapper {
             display: inline-flex;
             flex-direction: column;
-            height: 1.1em;
+            height: 1.4em; /* Increased to fix descender clipping */
             overflow: hidden;
             position: relative;
-            vertical-align: bottom;
+            vertical-align: middle;
         }
 
         .handle-value {
             display: block;
-            height: 1.1em;
-            line-height: 1.1em;
+            height: 1.4em;
+            line-height: 1.4em;
             color: var(--handle-blue);
         }
 
@@ -203,7 +204,7 @@
             flex: 1.2;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
+            gap: 1rem;
             position: relative;
             padding-left: 4rem;
             height: 120vh;
@@ -473,7 +474,7 @@
                 const oldWidth = boxEl.offsetWidth;
 
                 // 2. Flip text out
-                await animate(handleEl, { opacity: 0, y: -30, rotateX: 45 }, { duration: 0.4, easing: "easeIn" }).finished;
+                await animate(handleEl, { opacity: 0, y: -40, rotateX: 60 }, { duration: 0.4, easing: "easeIn" }).finished;
                 
                 // 3. Update content and color
                 currentIndex = (currentIndex + 1) % handles.length;
@@ -489,7 +490,7 @@
                 animate(boxEl, { width: newWidth + "px" }, { duration: 0.6, easing: [0.16, 1, 0.3, 1] });
 
                 // 6. Flip text in
-                handleEl.style.transform = "translateY(30px) rotateX(-45deg)";
+                handleEl.style.transform = "translateY(40px) rotateX(-60deg)";
                 await animate(handleEl, { opacity: 1, y: 0, rotateX: 0 }, { duration: 0.5, easing: "easeOut" }).finished;
 
                 // 7. Reset to auto width for responsiveness
