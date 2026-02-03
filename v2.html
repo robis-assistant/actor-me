@@ -124,7 +124,7 @@
             align-items: center;
             justify-content: space-between;
             min-height: 90vh;
-            overflow: hidden;
+            overflow: visible; /* Allow hover scaling to not clip */
         }
 
         .hero-content {
@@ -187,21 +187,25 @@
             gap: 2rem;
             position: relative;
             padding-left: 4rem;
-            height: 100vh;
-            mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+            height: 110vh;
+            margin-top: -5vh;
+            mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+            -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+            overflow: visible;
         }
 
         .col {
             display: flex;
             flex-direction: column;
             gap: 2rem;
+            overflow: visible;
         }
 
         .marquee-track {
             display: flex;
             flex-direction: column;
             gap: 2rem;
-            /* Animation handled by Motion One */
+            overflow: visible;
         }
 
         .card {
@@ -210,12 +214,15 @@
             overflow: hidden;
             width: 100%;
             aspect-ratio: 0.85;
-            transition: transform 0.3s ease;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transform-origin: center center;
+            will-change: transform;
         }
 
         .card:hover {
-            transform: scale(1.02);
-            z-index: 5;
+            transform: scale(1.05);
+            z-index: 100;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.12);
         }
 
         .card img {
@@ -239,6 +246,7 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
             font-family: var(--font-heading);
             white-space: nowrap;
+            pointer-events: none;
         }
 
         .card-label .slash { color: #BBB; margin: 0 4px; }
@@ -255,7 +263,7 @@
             .hero-container { flex-direction: column; text-align: center; height: auto; }
             .hero-content { margin-bottom: 4rem; max-width: 100%; }
             .hero-cta { justify-content: center; }
-            .hero-grid { padding-left: 0; height: 600px; mask-image: none; }
+            .hero-grid { padding-left: 0; height: 600px; mask-image: none; -webkit-mask-image: none; overflow: hidden; }
             h1 { font-size: 3.5rem; }
         }
     </style>
@@ -374,9 +382,9 @@
 
         // Animate Column 1 Down
         animate(".col-1 .marquee-track", 
-            { transform: ["translateY(-50%)", "translateY(0%)"] },
+            { transform: ["translateY(-50.4%)", "translateY(0%)"] },
             { 
-                duration: 40, 
+                duration: 80, 
                 easing: "linear", 
                 repeat: Infinity 
             }
@@ -384,9 +392,9 @@
 
         // Animate Column 2 Up
         animate(".col-2 .marquee-track", 
-            { transform: ["translateY(0%)", "translateY(-50%)"] },
+            { transform: ["translateY(0%)", "translateY(-50.4%)"] },
             { 
-                duration: 40, 
+                duration: 80, 
                 easing: "linear", 
                 repeat: Infinity 
             }
