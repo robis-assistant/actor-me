@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/motion@11.11.13/dist/motion.js"></script>
     <style>
         @font-face {
             font-family: 'ActorCustom';
@@ -200,27 +201,7 @@
             display: flex;
             flex-direction: column;
             gap: 2rem;
-            animation-duration: 40s;
-            animation-iteration-count: infinite;
-            animation-timing-function: linear;
-        }
-
-        .col-1 .marquee-track {
-            animation-name: marquee-down;
-        }
-
-        .col-2 .marquee-track {
-            animation-name: marquee-up;
-        }
-
-        @keyframes marquee-up {
-            from { transform: translateY(0); }
-            to { transform: translateY(-50%); }
-        }
-
-        @keyframes marquee-down {
-            from { transform: translateY(-50%); }
-            to { transform: translateY(0); }
+            /* Animation handled by Motion One */
         }
 
         .card {
@@ -387,5 +368,29 @@
             </div>
         </div>
     </div>
+
+    <script>
+        const { animate } = Motion;
+
+        // Animate Column 1 Down
+        animate(".col-1 .marquee-track", 
+            { transform: ["translateY(-50%)", "translateY(0%)"] },
+            { 
+                duration: 40, 
+                easing: "linear", 
+                repeat: Infinity 
+            }
+        );
+
+        // Animate Column 2 Up
+        animate(".col-2 .marquee-track", 
+            { transform: ["translateY(0%)", "translateY(-50%)"] },
+            { 
+                duration: 40, 
+                easing: "linear", 
+                repeat: Infinity 
+            }
+        );
+    </script>
 </body>
 </html>
