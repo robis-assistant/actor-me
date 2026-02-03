@@ -117,7 +117,7 @@
 
         /* Hero Container */
         .hero-container {
-            max-width: 1400px;
+            max-width: 1440px;
             margin: 0 auto;
             padding: 0 5% 6rem;
             display: flex;
@@ -181,10 +181,10 @@
 
         /* Hero Grid - Marquee Style */
         .hero-grid {
-            flex: 1;
+            flex: 1.2; /* Slightly more space for grid */
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
+            gap: 2rem;
             position: relative;
             padding-left: 4rem;
             height: 120vh;
@@ -198,7 +198,9 @@
             display: flex;
             flex-direction: column;
             overflow: visible;
-            padding: 0 40px; /* Crucial: extra horizontal space for scaling */
+            /* Extra room for shadows/scaling without shrinking content */
+            margin: 0 -40px; 
+            padding: 0 40px;
         }
 
         .marquee-track {
@@ -211,19 +213,28 @@
         .card {
             position: relative;
             border-radius: 40px;
-            overflow: hidden;
             width: 100%;
             aspect-ratio: 0.85;
             transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
             transform-origin: center center;
             will-change: transform;
             cursor: pointer;
+            z-index: 1;
+        }
+
+        /* Ensure the image stays rounded */
+        .card-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 40px;
+            overflow: hidden;
+            position: relative;
         }
 
         .card:hover {
             transform: scale(1.1) translateY(-5px);
             z-index: 100;
-            box-shadow: 0 40px 80px rgba(0,0,0,0.15);
+            box-shadow: 0 40px 100px rgba(0,0,0,0.18);
         }
 
         .card img {
@@ -312,30 +323,42 @@
                     <!-- Column 1 Cards Set A -->
                     <div class="card-set">
                         <div class="card" style="margin-bottom: 2rem;">
-                            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=400" alt="Actor">
+                            <div class="card-inner">
+                                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=400" alt="Actor">
+                            </div>
                             <div class="card-label">actor.me<span class="slash">/</span><span class="color-sharzad">sharzadrahmani</span></div>
                         </div>
                         <div class="card" style="margin-bottom: 2rem;">
-                            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=400" alt="Actor">
+                            <div class="card-inner">
+                                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=400" alt="Actor">
+                            </div>
                             <div class="card-label">actor.me<span class="slash">/</span><span class="color-moa">moahmadsen</span></div>
                         </div>
                         <div class="card" style="margin-bottom: 2rem;">
-                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=400" alt="Actor">
+                            <div class="card-inner">
+                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=400" alt="Actor">
+                            </div>
                             <div class="card-label">actor.me<span class="slash">/</span><span class="color-tind">tindsoneby</span></div>
                         </div>
                     </div>
                     <!-- Column 1 Cards Set B -->
                     <div class="card-set">
                         <div class="card" style="margin-bottom: 2rem;">
-                            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=400" alt="Actor">
+                            <div class="card-inner">
+                                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=400" alt="Actor">
+                            </div>
                             <div class="card-label">actor.me<span class="slash">/</span><span class="color-sharzad">sharzadrahmani</span></div>
                         </div>
                         <div class="card" style="margin-bottom: 2rem;">
-                            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=400" alt="Actor">
+                            <div class="card-inner">
+                                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=400" alt="Actor">
+                            </div>
                             <div class="card-label">actor.me<span class="slash">/</span><span class="color-moa">moahmadsen</span></div>
                         </div>
                         <div class="card" style="margin-bottom: 2rem;">
-                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=400" alt="Actor">
+                            <div class="card-inner">
+                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=400" alt="Actor">
+                            </div>
                             <div class="card-label">actor.me<span class="slash">/</span><span class="color-tind">tindsoneby</span></div>
                         </div>
                     </div>
@@ -346,38 +369,54 @@
                     <!-- Column 2 Cards Set A -->
                     <div class="card-set">
                         <div class="card" style="margin-bottom: 2rem;">
-                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=400" alt="Actor">
+                            <div class="card-inner">
+                                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=400" alt="Actor">
+                            </div>
                             <div class="card-label">actor.me<span class="slash">/</span><span class="color-athena">athenareddy</span></div>
                         </div>
                         <div class="card" style="margin-bottom: 2rem;">
-                            <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&q=80&w=400" alt="Actor">
+                            <div class="card-inner">
+                                <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&q=80&w=400" alt="Actor">
+                            </div>
                             <div class="card-label">actor.me<span class="slash">/</span><span class="color-gemine">gemineesingh</span></div>
                         </div>
                         <div class="card" style="margin-bottom: 2rem;">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400" alt="Actor">
+                            <div class="card-inner">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400" alt="Actor">
+                            </div>
                             <div class="card-label">actor.me<span class="slash">/</span><span class="color-egbun">egbunacberg</span></div>
                         </div>
                         <div class="card" style="margin-bottom: 2rem;">
-                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=400" alt="Actor">
+                            <div class="card-inner">
+                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=400" alt="Actor">
+                            </div>
                             <div class="card-label">actor.me<span class="slash">/</span><span class="color-maria">mariaforslin</span></div>
                         </div>
                     </div>
                     <!-- Column 2 Cards Set B -->
                     <div class="card-set">
                         <div class="card" style="margin-bottom: 2rem;">
-                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=400" alt="Actor">
+                            <div class="card-inner">
+                                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=400" alt="Actor">
+                            </div>
                             <div class="card-label">actor.me<span class="slash">/</span><span class="color-athena">athenareddy</span></div>
                         </div>
                         <div class="card" style="margin-bottom: 2rem;">
-                            <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&q=80&w=400" alt="Actor">
+                            <div class="card-inner">
+                                <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&q=80&w=400" alt="Actor">
+                            </div>
                             <div class="card-label">actor.me<span class="slash">/</span><span class="color-gemine">gemineesingh</span></div>
                         </div>
                         <div class="card" style="margin-bottom: 2rem;">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400" alt="Actor">
+                            <div class="card-inner">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400" alt="Actor">
+                            </div>
                             <div class="card-label">actor.me<span class="slash">/</span><span class="color-egbun">egbunacberg</span></div>
                         </div>
                         <div class="card" style="margin-bottom: 2rem;">
-                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=400" alt="Actor">
+                            <div class="card-inner">
+                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=400" alt="Actor">
+                            </div>
                             <div class="card-label">actor.me<span class="slash">/</span><span class="color-maria">mariaforslin</span></div>
                         </div>
                     </div>
