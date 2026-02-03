@@ -7,15 +7,61 @@
             src: url('../actorcv_repo/fonts/Actor Black.ttf') format('truetype');
             font-weight: 900;
         }
-        body { margin: 0; background: #3B3462; color: white; font-family: 'ActorCustom', sans-serif; display: flex; align-items: center; justify-content: center; height: 1080px; width: 1080px; }
-        .card { text-align: center; }
-        .handle { font-size: 80px; text-transform: uppercase; letter-spacing: -0.04em; }
-        .handle span { color: #FF3B30; }
+        @font-face {
+            font-family: 'ActorCustom';
+            src: url('../actorcv_repo/fonts/Actor Bold.ttf') format('truetype');
+            font-weight: 700;
+        }
+        :root {
+            --white: #FFFFFF;
+            --black: #000000;
+            --gray-light: #F9F9FB;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            height: 1080px; width: 1080px; background: var(--white); 
+            font-family: 'ActorCustom', sans-serif; overflow: hidden;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            padding: 80px;
+        }
+        .logo-box { height: 100px; margin-bottom: 100px; display: flex; align-items: center; }
+        .logo-box img { height: 100%; width: auto; }
+        
+        .headline { 
+            font-size: 80px; font-weight: 900; line-height: 1.1; 
+            text-align: center; letter-spacing: -0.04em; margin-bottom: 80px;
+        }
+
+        .handle-input-box {
+            background: var(--gray-light);
+            border: 2px solid #E5E5E5;
+            padding: 30px 60px;
+            border-radius: 40px;
+            display: inline-flex;
+            align-items: center;
+            font-size: 72px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+        .handle-prefix { color: var(--black); }
+        .handle-slash { opacity: 0.3; margin: 0 10px; }
+        .handle-value { color: #5856D6; }
+        
+        .footer {
+            position: absolute; bottom: 80px;
+            font-size: 28px; font-weight: 700; opacity: 0.4;
+            letter-spacing: 0.25em; text-transform: uppercase;
+        }
     </style>
 </head>
 <body>
-    <div class="card">
-        <div class="handle">ACTOR.ME/<span>JOAKIM</span></div>
+    <div class="logo-box">
+        <img src="../actorcv_repo/images/actor-logo.svg">
     </div>
+    <div class="headline">Get your own website<br>in one click.</div>
+    <div class="handle-input-box">
+        <span class="handle-prefix">actor.me</span><span class="handle-slash">/</span><span class="handle-value">yourname</span>
+    </div>
+    <div class="footer">DESIGN THOUGHTFUL. INDUSTRY STANDARD.</div>
 </body>
 </html>
