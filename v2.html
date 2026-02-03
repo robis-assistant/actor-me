@@ -59,6 +59,9 @@
             align-items: center;
             max-width: 1400px;
             margin: 0 auto;
+            position: relative;
+            z-index: 100;
+            background: white;
         }
 
         .logo {
@@ -115,16 +118,19 @@
         .hero-container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 6rem 5%;
+            padding: 2rem 5% 6rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            min-height: 80vh;
+            min-height: 90vh;
+            overflow: hidden;
         }
 
         .hero-content {
             flex: 1;
             max-width: 550px;
+            position: relative;
+            z-index: 10;
         }
 
         h1 {
@@ -172,7 +178,7 @@
             line-height: 1.2;
         }
 
-        /* Hero Grid */
+        /* Hero Grid - Marquee Style */
         .hero-grid {
             flex: 1;
             display: grid;
@@ -180,6 +186,41 @@
             gap: 2rem;
             position: relative;
             padding-left: 4rem;
+            height: 100vh;
+            mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+        }
+
+        .col {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .marquee-track {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            animation-duration: 40s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+
+        .col-1 .marquee-track {
+            animation-name: marquee-down;
+        }
+
+        .col-2 .marquee-track {
+            animation-name: marquee-up;
+        }
+
+        @keyframes marquee-up {
+            from { transform: translateY(0); }
+            to { transform: translateY(-50%); }
+        }
+
+        @keyframes marquee-down {
+            from { transform: translateY(-50%); }
+            to { transform: translateY(0); }
         }
 
         .card {
@@ -187,12 +228,13 @@
             border-radius: 40px;
             overflow: hidden;
             width: 100%;
-            aspect-ratio: 0.85; /* Portrait proportion as seen in design */
+            aspect-ratio: 0.85;
             transition: transform 0.3s ease;
         }
 
         .card:hover {
-            transform: translateY(-5px);
+            transform: scale(1.02);
+            z-index: 5;
         }
 
         .card img {
@@ -218,13 +260,8 @@
             white-space: nowrap;
         }
 
-        .card:hover .card-label {
-            transform: translateX(-50%) translateY(-2px);
-        }
-
         .card-label .slash { color: #BBB; margin: 0 4px; }
         
-        /* Specific text colors for handles as per design */
         .color-sharzad { color: #E67E22; }
         .color-moa { color: #F1C40F; }
         .color-tind { color: #E91E63; }
@@ -233,15 +270,11 @@
         .color-egbun { color: #D35400; }
         .color-maria { color: #27AE60; }
 
-        /* Offsets for staggered look */
-        .col-2 { margin-top: -8rem; }
-
         @media (max-width: 1024px) {
-            .hero-container { flex-direction: column; text-align: center; }
+            .hero-container { flex-direction: column; text-align: center; height: auto; }
             .hero-content { margin-bottom: 4rem; max-width: 100%; }
             .hero-cta { justify-content: center; }
-            .hero-grid { padding-left: 0; }
-            .col-2 { margin-top: 0; }
+            .hero-grid { padding-left: 0; height: 600px; mask-image: none; }
             h1 { font-size: 3.5rem; }
         }
     </style>
@@ -284,36 +317,72 @@
         </div>
 
         <div class="hero-grid">
-            <div class="col-1">
-                <div class="card" style="margin-bottom: 2rem;">
-                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=400" alt="Actor">
-                    <div class="card-label">actor.me<span class="slash">/</span><span class="color-sharzad">sharzadrahmani</span></div>
-                </div>
-                <div class="card" style="margin-bottom: 2rem;">
-                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=400" alt="Actor">
-                    <div class="card-label">actor.me<span class="slash">/</span><span class="color-moa">moahmadsen</span></div>
-                </div>
-                <div class="card">
-                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=400" alt="Actor">
-                    <div class="card-label">actor.me<span class="slash">/</span><span class="color-tind">tindsoneby</span></div>
+            <div class="col col-1">
+                <div class="marquee-track">
+                    <!-- Column 1 Cards -->
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=400" alt="Actor">
+                        <div class="card-label">actor.me<span class="slash">/</span><span class="color-sharzad">sharzadrahmani</span></div>
+                    </div>
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=400" alt="Actor">
+                        <div class="card-label">actor.me<span class="slash">/</span><span class="color-moa">moahmadsen</span></div>
+                    </div>
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=400" alt="Actor">
+                        <div class="card-label">actor.me<span class="slash">/</span><span class="color-tind">tindsoneby</span></div>
+                    </div>
+                    <!-- Duplicate for Loop -->
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=400" alt="Actor">
+                        <div class="card-label">actor.me<span class="slash">/</span><span class="color-sharzad">sharzadrahmani</span></div>
+                    </div>
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=400" alt="Actor">
+                        <div class="card-label">actor.me<span class="slash">/</span><span class="color-moa">moahmadsen</span></div>
+                    </div>
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=400" alt="Actor">
+                        <div class="card-label">actor.me<span class="slash">/</span><span class="color-tind">tindsoneby</span></div>
+                    </div>
                 </div>
             </div>
-            <div class="col-2">
-                <div class="card" style="margin-bottom: 2rem;">
-                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=400" alt="Actor">
-                    <div class="card-label">actor.me<span class="slash">/</span><span class="color-athena">athenareddy</span></div>
-                </div>
-                <div class="card" style="margin-bottom: 2rem;">
-                    <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&q=80&w=400" alt="Actor">
-                    <div class="card-label">actor.me<span class="slash">/</span><span class="color-gemine">gemineesingh</span></div>
-                </div>
-                <div class="card" style="margin-bottom: 2rem;">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400" alt="Actor">
-                    <div class="card-label">actor.me<span class="slash">/</span><span class="color-egbun">egbunacberg</span></div>
-                </div>
-                <div class="card">
-                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=400" alt="Actor">
-                    <div class="card-label">actor.me<span class="slash">/</span><span class="color-maria">mariaforslin</span></div>
+            <div class="col col-2">
+                <div class="marquee-track">
+                    <!-- Column 2 Cards -->
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=400" alt="Actor">
+                        <div class="card-label">actor.me<span class="slash">/</span><span class="color-athena">athenareddy</span></div>
+                    </div>
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&q=80&w=400" alt="Actor">
+                        <div class="card-label">actor.me<span class="slash">/</span><span class="color-gemine">gemineesingh</span></div>
+                    </div>
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400" alt="Actor">
+                        <div class="card-label">actor.me<span class="slash">/</span><span class="color-egbun">egbunacberg</span></div>
+                    </div>
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=400" alt="Actor">
+                        <div class="card-label">actor.me<span class="slash">/</span><span class="color-maria">mariaforslin</span></div>
+                    </div>
+                    <!-- Duplicate for Loop -->
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=400" alt="Actor">
+                        <div class="card-label">actor.me<span class="slash">/</span><span class="color-athena">athenareddy</span></div>
+                    </div>
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&q=80&w=400" alt="Actor">
+                        <div class="card-label">actor.me<span class="slash">/</span><span class="color-gemine">gemineesingh</span></div>
+                    </div>
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400" alt="Actor">
+                        <div class="card-label">actor.me<span class="slash">/</span><span class="color-egbun">egbunacberg</span></div>
+                    </div>
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=400" alt="Actor">
+                        <div class="card-label">actor.me<span class="slash">/</span><span class="color-maria">mariaforslin</span></div>
+                    </div>
                 </div>
             </div>
         </div>
