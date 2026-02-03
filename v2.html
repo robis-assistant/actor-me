@@ -8,12 +8,32 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        @font-face {
+            font-family: 'ActorCustom';
+            src: url('fonts/Actor.ttf') format('truetype');
+            font-weight: 400;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'ActorCustom';
+            src: url('fonts/Actor Bold.ttf') format('truetype');
+            font-weight: 700;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'ActorCustom';
+            src: url('fonts/Actor Black.ttf') format('truetype');
+            font-weight: 900;
+            font-style: normal;
+        }
+
         :root {
             --black: #000000;
             --white: #FFFFFF;
             --gray-light: #F9F9FB;
             --gray-text: #666666;
             --font-main: 'Inter', sans-serif;
+            --font-heading: 'ActorCustom', sans-serif;
             --handle-blue: #5856D6;
         }
 
@@ -60,6 +80,7 @@
             display: flex;
             align-items: center;
             gap: 4px;
+            font-family: var(--font-heading);
         }
 
         .nav-links .dropdown-arrow {
@@ -83,6 +104,7 @@
             font-weight: 600;
             font-size: 0.95rem;
             transition: opacity 0.2s;
+            font-family: var(--font-heading);
         }
 
         .btn-black:hover {
@@ -106,6 +128,7 @@
         }
 
         h1 {
+            font-family: var(--font-heading);
             font-size: 4.5rem;
             line-height: 1;
             letter-spacing: -0.04em;
@@ -124,6 +147,7 @@
             font-weight: 600;
             margin-bottom: 2.5rem;
             letter-spacing: -0.02em;
+            font-family: var(--font-heading);
         }
 
         .handle-prefix { color: var(--black); }
