@@ -100,7 +100,6 @@
         .dropdown-arrow { width: 10px; height: 6px; opacity: 0.5; transition: transform 0.3s ease; }
         .nav-item:hover .dropdown-arrow { transform: rotate(180deg); }
 
-        /* Mega Menu styling */
         .mega-menu {
             position: absolute;
             top: 100%;
@@ -117,17 +116,9 @@
             border: 1px solid #F0F0F0;
         }
 
-        .nav-item:hover .mega-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateX(-50%) translateY(0);
-        }
+        .nav-item:hover .mega-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
 
-        .mega-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 0.5rem;
-        }
+        .mega-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; }
 
         .mega-item {
             display: flex;
@@ -154,23 +145,9 @@
             flex-shrink: 0;
         }
 
-        .mega-icon svg {
-            width: 32px;
-            height: 32px;
-        }
-
-        .mega-item-info h4 {
-            font-family: var(--font-heading);
-            font-size: 1.1rem;
-            margin-bottom: 0.3rem;
-            font-weight: 700;
-        }
-
-        .mega-item-info p {
-            color: #666;
-            font-size: 0.85rem;
-            line-height: 1.3;
-        }
+        .mega-icon svg { width: 32px; height: 32px; }
+        .mega-item-info h4 { font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 0.3rem; font-weight: 700; }
+        .mega-item-info p { color: #666; font-size: 0.85rem; line-height: 1.3; }
 
         .nav-auth { display: flex; gap: 1.5rem; align-items: center; }
         .btn-black { background: var(--black); color: var(--white); padding: 0.75rem 1.5rem; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: opacity 0.2s; font-family: var(--font-heading); }
@@ -181,13 +158,7 @@
         .hero-content { flex: 0 0 600px; position: relative; z-index: 10; }
         h1 { font-family: var(--font-heading); font-size: 4.5rem; line-height: 1.1; letter-spacing: -0.04em; margin-bottom: 2.5rem; font-weight: 700; }
         
-        .headline-logo {
-            display: inline-block;
-            height: 0.72em;
-            vertical-align: middle;
-            margin-top: -0.5em;
-            margin-left: 0.1em;
-        }
+        .headline-logo { display: inline-block; height: 0.72em; vertical-align: middle; margin-top: -0.5em; margin-left: 0.1em; }
         .headline-logo svg { height: 100%; width: auto; }
 
         .handle-input-box { background: var(--gray-light); border: 1px solid #E5E5E5; padding: 1rem 2rem; border-radius: 16px; display: inline-flex; align-items: center; font-size: 2.5rem; font-weight: 600; margin-bottom: 2.5rem; letter-spacing: -0.02em; font-family: var(--font-heading); position: relative; overflow: hidden; white-space: nowrap; line-height: 1.4; }
@@ -241,7 +212,7 @@
         }
 
         .carousel-viewport {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             position: relative;
             width: 100%;
@@ -263,9 +234,7 @@
             transition: opacity 0.6s ease;
         }
 
-        .slide.active {
-            opacity: 1;
-        }
+        .slide.active { opacity: 1; }
 
         .testimonial-photo {
             flex: 1;
@@ -286,27 +255,6 @@
         .quote { font-family: var(--font-heading); font-size: 3.5rem; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 3rem; font-weight: 700; }
         .author-info h4 { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; }
         .author-info p { color: var(--gray-text); font-size: 1.2rem; }
-
-        /* Carousel Controls */
-        .carousel-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 64px;
-            height: 64px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 10;
-            transition: background 0.3s;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        .carousel-arrow:hover { background: rgba(255,255,255,0.2); }
-        .arrow-left { left: -100px; }
-        .arrow-right { right: -100px; }
 
         .carousel-dots {
             display: flex;
@@ -346,11 +294,6 @@
         footer { padding: 6rem 5%; text-align: center; border-top: 1px solid #EEE; }
         .footer-logo { height: 40px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; }
         .footer-logo svg { height: 100%; width: auto; }
-
-        @media (max-width: 1400px) {
-            .arrow-left { left: 20px; }
-            .arrow-right { right: 20px; }
-        }
 
         @media (max-width: 1024px) {
             .hero-container { flex-direction: column; text-align: center; height: auto; }
@@ -466,15 +409,15 @@
     <!-- Testimonial Section -->
     <section class="testimonial-section">
         <div class="testimonial-header">
-            <div class="header-phrase">Designed</div>
-            <div class="header-phrase">In collaboration</div>
-            <div class="header-phrase">With Casting Directors</div>
+            <div>Designed</div>
+            <div>In collaboration</div>
+            <div>With Casting Directors</div>
         </div>
         <div class="carousel-viewport">
-            <div class="carousel-arrow arrow-left" onclick="moveSlide(-1)">
+            <div class="carousel-arrow arrow-left" onclick="manualMoveSlide(-1)">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
             </div>
-            <div class="carousel-arrow arrow-right" onclick="moveSlide(1)">
+            <div class="carousel-arrow arrow-right" onclick="manualMoveSlide(1)">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
             </div>
             <div class="carousel-track" id="carouselTrack">
@@ -520,9 +463,9 @@
             </div>
         </div>
         <div class="carousel-dots" id="carouselDots">
-            <div class="dot active" onclick="jumpToSlide(0)"></div>
-            <div class="dot" onclick="jumpToSlide(1)"></div>
-            <div class="dot" onclick="jumpToSlide(2)"></div>
+            <div class="dot active" onclick="manualJumpToSlide(0)"></div>
+            <div class="dot" onclick="manualJumpToSlide(1)"></div>
+            <div class="dot" onclick="manualJumpToSlide(2)"></div>
         </div>
     </section>
 
@@ -610,8 +553,8 @@
 
         const grid = document.querySelector('.hero-grid');
         grid.addEventListener('mouseenter', () => {
-            animate(controls1, { playbackRate: 0.1 }, { duration: 1 });
-            animate(controls2, { playbackRate: 0.1 }, { duration: 1 });
+            animate(controls1, { playbackRate: 0.2 }, { duration: 1 });
+            animate(controls2, { playbackRate: 0.2 }, { duration: 1 });
         });
         grid.addEventListener('mouseleave', () => {
             animate(controls1, { playbackRate: 1 }, { duration: 1 });
@@ -624,6 +567,8 @@
         const dots = document.querySelectorAll('.dot');
         const slides = document.querySelectorAll('.slide');
 
+        let autoCycle;
+
         function updateCarousel() {
             track.style.transform = `translateX(-${currentSlide * 33.333}%)`;
             dots.forEach((dot, idx) => {
@@ -634,17 +579,36 @@
             });
         }
 
-        updateCarousel();
+        function startAutoCycle() {
+            stopAutoCycle();
+            autoCycle = setInterval(() => {
+                currentSlide = (currentSlide + 1) % 3;
+                updateCarousel();
+            }, 10000);
+        }
+
+        function stopAutoCycle() {
+            if (autoCycle) clearInterval(autoCycle);
+        }
 
         window.moveSlide = function(direction) {
             currentSlide = (currentSlide + direction + 3) % 3;
             updateCarousel();
+            startAutoCycle(); // Reset timer
         }
 
         window.jumpToSlide = function(index) {
             currentSlide = index;
             updateCarousel();
+            startAutoCycle(); // Reset timer
         }
+
+        // Renamed functions to match HTML or update HTML to match these
+        window.manualMoveSlide = window.moveSlide;
+        window.manualJumpToSlide = window.jumpToSlide;
+
+        updateCarousel();
+        startAutoCycle();
 
         function setTheme(theme) {
             document.body.setAttribute('data-theme', theme);
