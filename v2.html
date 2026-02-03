@@ -117,13 +117,13 @@
 
         /* Hero Container */
         .hero-container {
-            max-width: 1400px;
+            max-width: 1440px;
             margin: 0 auto;
-            padding: 2rem 5% 6rem;
+            padding: 0 5% 6rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            min-height: 90vh;
+            min-height: 100vh;
             overflow: visible; 
         }
 
@@ -157,8 +157,8 @@
             font-family: var(--font-heading);
             position: relative;
             overflow: hidden;
-            transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
             white-space: nowrap;
+            /* width animated via JS */
         }
 
         .handle-prefix { color: var(--black); }
@@ -167,7 +167,7 @@
         .handle-value-wrapper {
             display: inline-flex;
             flex-direction: column;
-            height: 1em;
+            height: 1.1em;
             overflow: hidden;
             position: relative;
             vertical-align: bottom;
@@ -175,8 +175,8 @@
 
         .handle-value {
             display: block;
-            height: 1em;
-            line-height: 1em;
+            height: 1.1em;
+            line-height: 1.1em;
             color: var(--handle-blue);
         }
 
@@ -217,8 +217,8 @@
             display: flex;
             flex-direction: column;
             overflow: visible;
-            margin: 0 -40px; 
-            padding: 0 40px;
+            margin: 0 -100px;
+            padding: 0 100px;
         }
 
         .marquee-track {
@@ -233,7 +233,7 @@
             border-radius: 40px;
             width: 100%;
             aspect-ratio: 0.85;
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: transform 0.8s cubic-bezier(0.2, 1, 0.2, 1), box-shadow 0.8s cubic-bezier(0.2, 1, 0.2, 1);
             transform-origin: center center;
             will-change: transform;
             cursor: pointer;
@@ -249,9 +249,9 @@
         }
 
         .card:hover {
-            transform: scale(1.1) translateY(-5px);
+            transform: scale(1.12) translateY(-10px);
             z-index: 100;
-            box-shadow: 0 40px 100px rgba(0,0,0,0.18);
+            box-shadow: 0 60px 120px rgba(0,0,0,0.18);
         }
 
         .card img {
@@ -464,23 +464,36 @@
         const handleEl = document.querySelector('.handle-value');
         const boxEl = document.querySelector('.handle-input-box');
 
+        // Function to animate the box width and the flipping text
         async function cycleHandles() {
             while (true) {
                 await new Promise(r => setTimeout(r, 2500));
                 
-                // 1. Fade out and slide up old name
-                await animate(handleEl, { opacity: 0, y: -20 }, { duration: 0.3, easing: "easeIn" }).finished;
+                // 1. Measure current width
+                const oldWidth = boxEl.offsetWidth;
+
+                // 2. Flip text out
+                await animate(handleEl, { opacity: 0, y: -30, rotateX: 45 }, { duration: 0.4, easing: "easeIn" }).finished;
                 
-                // 2. Update content and color
+                // 3. Update content and color
                 currentIndex = (currentIndex + 1) % handles.length;
                 handleEl.textContent = handles[currentIndex].name;
                 handleEl.style.color = handles[currentIndex].color;
                 
-                // 3. Reset name position (below view)
-                handleEl.style.transform = "translateY(20px)";
+                // 4. Measure new "auto" width
+                boxEl.style.width = "auto";
+                const newWidth = boxEl.offsetWidth;
                 
-                // 4. Fade in and slide up new name
-                await animate(handleEl, { opacity: 1, y: 0 }, { duration: 0.4, easing: "easeOut" }).finished;
+                // 5. Animate width from old to new
+                boxEl.style.width = oldWidth + "px"; // Force start width
+                animate(boxEl, { width: newWidth + "px" }, { duration: 0.6, easing: [0.16, 1, 0.3, 1] });
+
+                // 6. Flip text in
+                handleEl.style.transform = "translateY(30px) rotateX(-45deg)";
+                await animate(handleEl, { opacity: 1, y: 0, rotateX: 0 }, { duration: 0.5, easing: "easeOut" }).finished;
+
+                // 7. Reset to auto width for responsiveness
+                boxEl.style.width = "auto";
             }
         }
 
