@@ -119,11 +119,11 @@
         .hero-container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 5% 6rem;
+            padding: 2rem 5% 6rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            min-height: 100vh;
+            min-height: 90vh;
             overflow: visible; 
         }
 
@@ -147,7 +147,7 @@
             background: var(--gray-light);
             border: 1px solid #E5E5E5;
             padding: 1rem 2rem;
-            border-radius: 16px;
+            border-radius: 20px;
             display: inline-flex;
             align-items: center;
             font-size: 2.5rem;
@@ -155,11 +155,30 @@
             margin-bottom: 2.5rem;
             letter-spacing: -0.02em;
             font-family: var(--font-heading);
+            position: relative;
+            overflow: hidden;
+            transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            white-space: nowrap;
         }
 
         .handle-prefix { color: var(--black); }
         .handle-slash { color: var(--black); opacity: 0.3; margin: 0 4px; }
-        .handle-value { color: var(--handle-blue); }
+        
+        .handle-value-wrapper {
+            display: inline-flex;
+            flex-direction: column;
+            height: 1em;
+            overflow: hidden;
+            position: relative;
+            vertical-align: bottom;
+        }
+
+        .handle-value {
+            display: block;
+            height: 1em;
+            line-height: 1em;
+            color: var(--handle-blue);
+        }
 
         .hero-cta {
             display: flex;
@@ -198,9 +217,8 @@
             display: flex;
             flex-direction: column;
             overflow: visible;
-            /* Room for scaling/shadows without shrinking cards */
-            margin: 0 -100px;
-            padding: 0 100px;
+            margin: 0 -40px; 
+            padding: 0 40px;
         }
 
         .marquee-track {
@@ -215,7 +233,7 @@
             border-radius: 40px;
             width: 100%;
             aspect-ratio: 0.85;
-            transition: transform 0.8s cubic-bezier(0.2, 1, 0.2, 1), box-shadow 0.8s cubic-bezier(0.2, 1, 0.2, 1);
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
             transform-origin: center center;
             will-change: transform;
             cursor: pointer;
@@ -231,9 +249,9 @@
         }
 
         .card:hover {
-            transform: scale(1.12) translateY(-10px);
+            transform: scale(1.1) translateY(-5px);
             z-index: 100;
-            box-shadow: 0 60px 120px rgba(0,0,0,0.18);
+            box-shadow: 0 40px 100px rgba(0,0,0,0.18);
         }
 
         .card img {
@@ -308,7 +326,10 @@
         <div class="hero-content">
             <h1>Get your own Actor.me website in one click</h1>
             <div class="handle-input-box">
-                <span class="handle-prefix">actor.me</span><span class="handle-slash">/</span><span class="handle-value">joakim</span>
+                <span class="handle-prefix">actor.me</span><span class="handle-slash">/</span>
+                <span class="handle-value-wrapper">
+                    <span class="handle-value">joakim</span>
+                </span>
             </div>
             <div class="hero-cta">
                 <a href="#" class="btn-black btn-hero">Get started now</a>
@@ -441,24 +462,25 @@
 
         let currentIndex = 0;
         const handleEl = document.querySelector('.handle-value');
+        const boxEl = document.querySelector('.handle-input-box');
 
         async function cycleHandles() {
             while (true) {
                 await new Promise(r => setTimeout(r, 2500));
                 
-                // Fade out
-                await animate(handleEl, { opacity: 0, x: 10 }, { duration: 0.4 }).finished;
+                // 1. Fade out and slide up old name
+                await animate(handleEl, { opacity: 0, y: -20 }, { duration: 0.3, easing: "easeIn" }).finished;
                 
-                // Update content
+                // 2. Update content and color
                 currentIndex = (currentIndex + 1) % handles.length;
                 handleEl.textContent = handles[currentIndex].name;
                 handleEl.style.color = handles[currentIndex].color;
                 
-                // Reset position for slide-in
-                handleEl.style.transform = "translateX(-10px)";
+                // 3. Reset name position (below view)
+                handleEl.style.transform = "translateY(20px)";
                 
-                // Fade in
-                await animate(handleEl, { opacity: 1, x: 0 }, { duration: 0.4 }).finished;
+                // 4. Fade in and slide up new name
+                await animate(handleEl, { opacity: 1, y: 0 }, { duration: 0.4, easing: "easeOut" }).finished;
             }
         }
 
