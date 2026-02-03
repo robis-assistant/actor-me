@@ -427,6 +427,43 @@
     <script>
         const { animate } = Motion;
 
+        // Handles Animation Data
+        const handles = [
+            { name: "joakim", color: "#5856D6" },
+            { name: "sharzadrahmani", color: "#E67E22" },
+            { name: "moahmadsen", color: "#F1C40F" },
+            { name: "tindsoneby", color: "#E91E63" },
+            { name: "athenareddy", color: "#3498DB" },
+            { name: "gemineesingh", color: "#E74C3C" },
+            { name: "egbunacberg", color: "#D35400" },
+            { name: "mariaforslin", color: "#27AE60" }
+        ];
+
+        let currentIndex = 0;
+        const handleEl = document.querySelector('.handle-value');
+
+        async function cycleHandles() {
+            while (true) {
+                await new Promise(r => setTimeout(r, 2500));
+                
+                // Fade out
+                await animate(handleEl, { opacity: 0, x: 10 }, { duration: 0.4 }).finished;
+                
+                // Update content
+                currentIndex = (currentIndex + 1) % handles.length;
+                handleEl.textContent = handles[currentIndex].name;
+                handleEl.style.color = handles[currentIndex].color;
+                
+                // Reset position for slide-in
+                handleEl.style.transform = "translateX(-10px)";
+                
+                // Fade in
+                await animate(handleEl, { opacity: 1, x: 0 }, { duration: 0.4 }).finished;
+            }
+        }
+
+        cycleHandles();
+
         // Animate Column 1 Down
         const controls1 = animate(".col-1 .marquee-track", 
             { transform: ["translateY(-50%)", "translateY(0%)"] },
