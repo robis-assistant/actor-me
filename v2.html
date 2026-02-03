@@ -204,7 +204,8 @@
         .card-label {
             position: absolute;
             bottom: 24px;
-            left: 24px;
+            left: 50%;
+            transform: translateX(-50%);
             background: var(--white);
             padding: 8px 16px;
             border-radius: 12px;
@@ -214,6 +215,11 @@
             align-items: center;
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
             font-family: var(--font-heading);
+            white-space: nowrap;
+        }
+
+        .card:hover .card-label {
+            transform: translateX(-50%) translateY(-2px);
         }
 
         .card-label .slash { color: #BBB; margin: 0 4px; }
