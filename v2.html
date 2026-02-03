@@ -117,7 +117,7 @@
 
         /* Hero Container */
         .hero-container {
-            max-width: 1440px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 5% 6rem;
             display: flex;
@@ -181,7 +181,7 @@
 
         /* Hero Grid - Marquee Style */
         .hero-grid {
-            flex: 1.2; /* Slightly more space for grid */
+            flex: 1.2;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 2rem;
@@ -198,9 +198,9 @@
             display: flex;
             flex-direction: column;
             overflow: visible;
-            /* Extra room for shadows/scaling without shrinking content */
-            margin: 0 -40px; 
-            padding: 0 40px;
+            /* Room for scaling/shadows without shrinking cards */
+            margin: 0 -100px;
+            padding: 0 100px;
         }
 
         .marquee-track {
@@ -215,14 +215,13 @@
             border-radius: 40px;
             width: 100%;
             aspect-ratio: 0.85;
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: transform 0.8s cubic-bezier(0.2, 1, 0.2, 1), box-shadow 0.8s cubic-bezier(0.2, 1, 0.2, 1);
             transform-origin: center center;
             will-change: transform;
             cursor: pointer;
             z-index: 1;
         }
 
-        /* Ensure the image stays rounded */
         .card-inner {
             width: 100%;
             height: 100%;
@@ -232,9 +231,9 @@
         }
 
         .card:hover {
-            transform: scale(1.1) translateY(-5px);
+            transform: scale(1.12) translateY(-10px);
             z-index: 100;
-            box-shadow: 0 40px 100px rgba(0,0,0,0.18);
+            box-shadow: 0 60px 120px rgba(0,0,0,0.18);
         }
 
         .card img {
@@ -429,24 +428,28 @@
         const { animate } = Motion;
 
         // Animate Column 1 Down
-        animate(".col-1 .marquee-track", 
+        const controls1 = animate(".col-1 .marquee-track", 
             { transform: ["translateY(-50%)", "translateY(0%)"] },
-            { 
-                duration: 120, 
-                easing: "linear", 
-                repeat: Infinity 
-            }
+            { duration: 120, easing: "linear", repeat: Infinity }
         );
 
         // Animate Column 2 Up
-        animate(".col-2 .marquee-track", 
+        const controls2 = animate(".col-2 .marquee-track", 
             { transform: ["translateY(0%)", "translateY(-50%)"] },
-            { 
-                duration: 120, 
-                easing: "linear", 
-                repeat: Infinity 
-            }
+            { duration: 120, easing: "linear", repeat: Infinity }
         );
+
+        // Slow down on hover
+        const grid = document.querySelector('.hero-grid');
+        grid.addEventListener('mouseenter', () => {
+            animate(controls1, { playbackRate: 0.2 }, { duration: 1 });
+            animate(controls2, { playbackRate: 0.2 }, { duration: 1 });
+        });
+
+        grid.addEventListener('mouseleave', () => {
+            animate(controls1, { playbackRate: 1 }, { duration: 1 });
+            animate(controls2, { playbackRate: 1 }, { duration: 1 });
+        });
     </script>
 </body>
 </html>
