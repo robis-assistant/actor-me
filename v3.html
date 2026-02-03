@@ -255,12 +255,11 @@
         .bottom-marquee {
             width: 100vw;
             margin-left: -5%;
-            background: rgba(0,0,0,0.2);
+            background: transparent; /* No background color */
             padding: 2.5rem 0;
             overflow: hidden;
             display: flex;
             white-space: nowrap;
-            border-top: 1px solid rgba(255,255,255,0.05);
         }
 
         .marquee-inner {
@@ -275,7 +274,8 @@
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.15em;
-            opacity: 0.6;
+            color: var(--white); /* White text */
+            opacity: 1; /* Full white as per design */
         }
 
         .carousel-dots {
