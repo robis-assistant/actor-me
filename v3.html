@@ -234,6 +234,14 @@
             justify-content: center;
             align-items: center;
             padding: 0 2rem;
+            opacity: 0.15;
+            transition: opacity 0.8s ease;
+            filter: grayscale(100%);
+        }
+
+        .slide.active {
+            opacity: 1;
+            filter: grayscale(0%);
         }
 
         .full-design-img {
@@ -564,6 +572,7 @@
         const track = document.getElementById('carouselTrack');
         const dots = document.querySelectorAll('.dot');
         const phrases = document.querySelectorAll('.header-phrase');
+        const slides = document.querySelectorAll('.slide');
 
         function updateCarousel() {
             track.style.transform = `translateX(-${currentSlide * 33.333}%)`;
@@ -573,7 +582,12 @@
             phrases.forEach((phrase, idx) => {
                 phrase.classList.toggle('hidden', idx !== currentSlide);
             });
+            slides.forEach((slide, idx) => {
+                slide.classList.toggle('active', idx === currentSlide);
+            });
         }
+
+        updateCarousel();
 
         window.moveSlide = function(direction) {
             currentSlide = (currentSlide + direction + 3) % 3;
