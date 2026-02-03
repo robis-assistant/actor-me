@@ -472,8 +472,8 @@
                 // 1. Measure current width
                 const oldWidth = boxEl.offsetWidth;
 
-                // 2. Flip text out
-                await animate(handleEl, { opacity: 0, y: -40, rotateX: 60 }, { duration: 0.4, easing: "easeIn" }).finished;
+                // 2. Flip text out (Faster)
+                await animate(handleEl, { opacity: 0, y: -40, rotateX: 60 }, { duration: 0.3, easing: "easeIn" }).finished;
                 
                 // 3. Update content and color
                 currentIndex = (currentIndex + 1) % handles.length;
@@ -484,15 +484,15 @@
                 boxEl.style.width = "auto";
                 const newWidth = boxEl.offsetWidth;
                 
-                // 5. Animate width from old to new
-                boxEl.style.width = oldWidth + "px"; // Force start width
-                animate(boxEl, { width: newWidth + "px" }, { duration: 0.6, easing: [0.16, 1, 0.3, 1] });
+                // 5. Start Snappy width animation
+                boxEl.style.width = oldWidth + "px"; 
+                const widthAnim = animate(boxEl, { width: newWidth + "px" }, { duration: 0.3, easing: [0.23, 1, 0.32, 1] });
 
-                // 6. Flip text in
+                // 6. Flip text in (Faster)
                 handleEl.style.transform = "translateY(40px) rotateX(-60deg)";
-                await animate(handleEl, { opacity: 1, y: 0, rotateX: 0 }, { duration: 0.5, easing: "easeOut" }).finished;
+                await animate(handleEl, { opacity: 1, y: 0, rotateX: 0 }, { duration: 0.3, easing: "easeOut" }).finished;
 
-                // 7. Reset to auto width for responsiveness
+                await widthAnim.finished;
                 boxEl.style.width = "auto";
             }
         }
