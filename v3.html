@@ -255,7 +255,7 @@
         .bottom-marquee {
             width: 100vw;
             margin-left: -5%;
-            background: transparent; /* No background color */
+            background: transparent; 
             padding: 2.5rem 0;
             overflow: hidden;
             display: flex;
@@ -274,13 +274,11 @@
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.15em;
-            color: var(--white); /* White text */
-            opacity: 1; /* Full white as per design */
+            color: var(--white); 
+            opacity: 1; 
         }
 
-        .marquee-inner b {
-            font-weight: 900;
-        }
+        .marquee-inner b { font-weight: 900; }
 
         .carousel-dots {
             display: flex;
@@ -298,7 +296,82 @@
         }
         .dot.active { background: var(--white); transform: scale(1.2); }
 
-        /* Features Section */
+        /* Pricing Section */
+        .pricing-section {
+            padding: 12rem 5%;
+            background: #000;
+            color: white;
+            text-align: center;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 6rem auto 0;
+        }
+
+        .pricing-card {
+            background: #111;
+            padding: 4rem 3rem;
+            border-radius: 48px;
+            border: 1px solid #222;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+        }
+
+        .pricing-card:hover { border-color: var(--accent); transform: translateY(-10px); }
+
+        .pricing-card.featured {
+            background: var(--bg-surface);
+            border-color: var(--accent);
+        }
+
+        .pricing-tag {
+            background: var(--accent);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+        }
+
+        .plan-name { font-family: var(--font-heading); font-size: 2rem; margin-bottom: 1rem; }
+        .plan-price { font-family: var(--font-heading); font-size: 4rem; font-weight: 800; margin-bottom: 2rem; }
+        .plan-price span { font-size: 1rem; opacity: 0.5; font-weight: 400; }
+
+        .plan-features { list-style: none; margin-bottom: 3rem; flex: 1; }
+        .plan-features li { margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; font-size: 1.1rem; opacity: 0.8; }
+        .plan-features li::before { content: "✓"; color: var(--accent); font-weight: 800; }
+
+        .btn-pricing {
+            width: 100%;
+            padding: 1.25rem;
+            border-radius: 100px;
+            border: none;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .btn-outline { background: transparent; border: 2px solid white; color: white; }
+        .btn-outline:hover { background: white; color: black; }
+        .btn-accent { background: var(--accent); color: white; }
+        .btn-accent:hover { filter: brightness(1.1); }
+
+        /* Detailed Features Section */
         .features-section { padding: 10rem 5%; background: var(--white); }
         .section-header { text-align: center; margin-bottom: 6rem; }
         .section-header h2 { font-family: var(--font-heading); font-size: 3.5rem; letter-spacing: -0.03em; margin-bottom: 1.5rem; }
@@ -329,6 +402,7 @@
             .features-grid-main { grid-template-columns: 1fr; }
             .mega-menu { width: 95vw; }
             .mega-grid { grid-template-columns: 1fr; }
+            .pricing-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -379,6 +453,7 @@
                     </div>
                 </div>
             </div>
+            <a href="showcase.html">Showcase</a>
             <a href="#">Pricing</a>
         </div>
         <div class="nav-auth">
@@ -469,13 +544,55 @@
         <div class="carousel-dots" id="carouselDots">
             <div class="dot active" onclick="manualJumpToSlide(0)"></div>
             <div class="dot" onclick="manualJumpToSlide(1)"></div>
-            <div class="dot" onclick="jumpToSlide(2)"></div>
+            <div class="dot" onclick="manualJumpToSlide(2)"></div>
         </div>
 
         <!-- Horizontal Marquee -->
         <div class="bottom-marquee">
             <div class="marquee-inner" id="bottomMarquee">
                 <span>DESIGNED IN COLLABORATION WITH CASTING DIRECTORS<b>/</b>DESIGNED IN COLLABORATION WITH CASTING DIRECTORS<b>/</b>DESIGNED IN COLLABORATION WITH CASTING DIRECTORS<b>/</b>DESIGNED IN COLLABORATION WITH CASTING DIRECTORS<b>/</b>DESIGNED IN COLLABORATION WITH CASTING DIRECTORS<b>/</b>DESIGNED IN COLLABORATION WITH CASTING DIRECTORS<b>/</b>DESIGNED IN COLLABORATION WITH CASTING DIRECTORS<b>/</b>DESIGNED IN COLLABORATION WITH CASTING DIRECTORS<b>/</b></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section">
+        <div class="section-header" style="color: white;">
+            <h2>Choose Your Stage</h2>
+            <p style="color: #999;">Simple, transparent pricing for every step of your journey.</p>
+        </div>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="plan-name">Starter</div>
+                <div class="plan-price">$0<span>/forever</span></div>
+                <ul class="plan-features">
+                    <li>Basic Actor Profile</li>
+                    <li>Link Tracking (10 clicks/mo)</li>
+                    <li>2 Headshot Slots</li>
+                </ul>
+                <button class="btn-pricing btn-outline">Get Started</button>
+            </div>
+            <div class="pricing-card featured">
+                <div class="pricing-tag">Most Popular</div>
+                <div class="plan-name">Pro</div>
+                <div class="plan-price">$12<span>/month</span></div>
+                <ul class="plan-features">
+                    <li>Unlimited Link Tracking</li>
+                    <li>Full Visitor Analytics</li>
+                    <li>Priority Casting List Access</li>
+                    <li>Custom Domain Support</li>
+                </ul>
+                <button class="btn-pricing btn-accent">Upgrade to Pro</button>
+            </div>
+            <div class="pricing-card">
+                <div class="plan-name">Agency</div>
+                <div class="plan-price">$49<span>/month</span></div>
+                <ul class="plan-features">
+                    <li>Manage up to 20 Actors</li>
+                    <li>Bulk Self-Tape Management</li>
+                    <li>Agent Dashboard</li>
+                </ul>
+                <button class="btn-pricing btn-outline">Contact Sales</button>
             </div>
         </div>
     </section>
@@ -514,7 +631,7 @@
     </footer>
 
     <script>
-        const { animate } = Motion;
+        const { animate, scroll } = Motion;
 
         // Handles Animation Data
         const handles = [
@@ -615,6 +732,10 @@
             document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active'));
             document.querySelector(`.btn-${theme}`).classList.add('active');
         }
+
+        // Scroll Reveal Animations
+        scroll(animate(".pricing-card", { opacity: [0, 1], y: [50, 0] }, { delay: stagger(0.1), duration: 0.8 }));
+        scroll(animate(".feature-card", { opacity: [0, 1], scale: [0.9, 1] }, { delay: stagger(0.1), duration: 0.6 }));
     </script>
 </body>
 </html>
